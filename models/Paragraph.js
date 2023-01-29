@@ -1,19 +1,23 @@
-const mongoose = require('mongoose')
-const {Schema} = mongoose
+const mongoose = require("mongoose");
+const { Schema } = mongoose;
 
-const paragraphSchema = new Schema({
-    type: [{String, required:true, lowercase: true,  }],
-    enum: ['lesson', 'typing-test', 'paragraph'],
+const paragraphSchema = new Schema(
+  {
+    type: [
+      {
+        String,
+        required: true,
+        lowercase: true,
+        enum: ["lesson", "typing-test", "paragraph"],
+      },
+    ],
     key: [String],
     level: Number,
-    content: [String]
-}, {timestamps: true})
+    content: [String],
+  },
+  { timestamps: true }
+);
 
+const Paragraph = mongoose.model("Paragraph", paragraphSchema);
 
-const Paragraph = mongoose.model('Paragraph', paragraphSchema)
-
-module.exports = Paragraph
-
-
-
-
+module.exports = Paragraph;
