@@ -8,20 +8,20 @@ const JWT_SECRET_KEY = process.env.JWT_SECRET_KEY
 const historySchema = new Schema({
   test: [
     {
-      level: Number,
-      score: Number,
-      attempt: Number,
+      level: {Number, default: 0} ,
+      score: {Number, default: 0},
+      attempt: {Number, default: 0},
     },
   ],
-  lesson: [String],
+  lesson: [{String, default: ''}],
   game: [
     {
-      level: Number,
-      time: Number,
-      attempt: Number,
+      level: {Number, default: 0},
+      time: {Number, default: 0},
+      attempt: {Number, default: 0},
     },
   ],
-});
+}, {_id: false});
 
 const userSchema = new Schema(
   {
@@ -49,10 +49,10 @@ const userSchema = new Schema(
     },
     password: {type: String, required: true, select: false},
 
-    bio: String,
-    image: String,
+    bio: {String, default: ''},
+    image: {String, default: ''},
 
-    history: historySchema,
+    history: {type:historySchema, default: ()=> ({})},
   },
   { timestamps: true }
 );

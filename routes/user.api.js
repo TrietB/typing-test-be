@@ -1,6 +1,6 @@
 const express = require("express");
 const router = express.Router();
-const { createUser, getAllUser } = require("../controllers/user.controller");
+const { createUser, getAllUsers, getUserById } = require("../controllers/user.controller");
 
 const { body } = require("express-validator");
 const validators = require("../middlewares/validators");
@@ -18,6 +18,9 @@ router.post(
   createUser
 );
 
-router.get("/", getAllUser);
+router.get("/", getAllUsers);
+
+
+router.get('/:username', getUserById)
 
 module.exports = router;

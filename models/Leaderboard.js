@@ -12,10 +12,18 @@ const leaderboardSchema = new Schema({
         user: {type: Schema.Types.ObjectId, ref: "Users"},
         score: Number
     },]
-    // validate: [arrayLimit, '{PATH} exceeds the limit of 10']
-})
+    // validate: [arrayLimit, '{PATH} exceeds the limit of 10']   
+},
+{ timestamps: true }
+)
 
 
 function validator (order){
     return order.length <= 100
 }
+
+
+const Leaderboard = mongoose.model('Leaderboard', leaderboardSchema)
+
+
+module.exports = Leaderboard

@@ -10,6 +10,7 @@ var logger = require('morgan');
 
 var indexRouter = require('./routes/index');
 const userRouter = require('./routes/user.api')
+const authRouter = require('./routes/auth.api')
 const { sendResponse } = require('./helpers/utils');
 
 
@@ -22,9 +23,11 @@ app.use(cookieParser());
 app.use(cors())
 app.use(express.static(path.join(__dirname, 'public')));
 
-app.use('/api', indexRouter);
+app.use('/', indexRouter);
 
 app.use('/users',userRouter)
+app.use('/auth', authRouter)
+
 
 const mongoURI = process.env.MONGODB_URI
 mongoose.connect(mongoURI).then(()=> console.log(`Connected to DB ${mongoURI}`)).catch((err)=> console.log(err))

@@ -1,13 +1,14 @@
-var express = require('express');
-var router = express.Router();
+const express = require('express');
+const router = express.Router();
 
 //authApi
 
-const authApi = require('./auth.api')
-const userApi = require('./user.api')
-router.use('/auth', authApi)
 
-router.use('/users', userApi)
+
+router.get('/', function(req, res, next) {
+    res.status(200).send("Welcome to taskmanager")
+  });
+
 
 
 
